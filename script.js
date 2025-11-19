@@ -1,4 +1,5 @@
-const API_BASE = 'http://localhost:3000';
+// Use deployed backend URL
+const API_BASE = "https://url-shortner-web-app-backend.onrender.com";
 
 document.addEventListener('DOMContentLoaded', () => {
   loadLinks();
@@ -43,6 +44,7 @@ async function createLink(event) {
       body: JSON.stringify({ original_url: targetUrl, custom_code: customCode || undefined })
     });
     const result = await response.json();
+
     if (response.ok) {
       messageDiv.innerHTML = '<p class="text-green-600">Link created successfully! Short code: ' + result.short_code + '</p>';
       document.getElementById('create-form').reset();
