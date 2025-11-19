@@ -41,12 +41,16 @@ async function createLink(event) {
     const response = await fetch(`${API_BASE}/api/links`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ original_url: targetUrl, custom_code: customCode || undefined })
+      body: JSON.stringify({
+        target_url: targetUrl,
+        short_code: customCode || undefined
+      })
     });
+
     const result = await response.json();
 
     if (response.ok) {
-      messageDiv.innerHTML = '<p class="text-green-600">Link created successfully! Short code: ' + result.short_code + '</p>';
+      messageDiv.innerHTML = `<p class="text-green-600">Link created successfully! Short code: ${result.short_code}</p>`;
       document.getElementById('create-form').reset();
       loadLinks();
     } else {
@@ -56,6 +60,7 @@ async function createLink(event) {
     messageDiv.innerHTML = '<p class="text-red-600">Error creating link</p>';
   }
 }
+
 
 function viewStats(code) {
   window.location.href = `stats.html?code=${code}`;
