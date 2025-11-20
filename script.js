@@ -18,7 +18,7 @@ async function loadLinks() {
         <td class="border px-4 py-2">${link.short_code}</td>
         <td class="border px-4 py-2"><a href="${link.original_url}" target="_blank" class="text-blue-600">${link.original_url}</a></td>
         <td class="border px-4 py-2">${link.click_count || 0}</td>
-        <td class="border px-4 py-2">${link.last_clicked ? new Date(link.last_clicked).toLocaleString() : 'Never'}</td>
+        <td class="border px-4 py-2">${link.last_clicked ? new Date(link.last_clicked).toISOString().replace('T', ' ').substring(0,19) : 'Never'}</td>
         <td class="border px-4 py-2">
           <button onclick="viewStats('${link.short_code}')" class="bg-green-600 text-white px-2 py-1 mr-2">Stats</button>
           <button onclick="deleteLink('${link.short_code}')" class="bg-red-600 text-white px-2 py-1">Delete</button>
