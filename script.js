@@ -38,12 +38,12 @@ async function createLink(event) {
   const messageDiv = document.getElementById('message');
 
   try {
-    const response = await fetch(`${API_BASE}/api/links`, {
+    const response = await fetch(`${API_BASE}/shorten`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        target_url: targetUrl,
-        short_code: customCode || undefined
+        original_url: targetUrl,
+        custom_code: customCode || undefined
       })
     });
 
